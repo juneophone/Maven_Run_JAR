@@ -124,3 +124,21 @@
                 </configuration>
             </plugin>
 ```
+
+# execute_jar folder
+
+Here are the executable JAR files.
+
+# Execute Result
+
+# The public JAR is separated into the libs folder.
+
+Command : java -jar GitCommitHashTest-1.0-SNAPSHOT-master-431ece7.jar
+
+<p align=center><img src="./images/MavenBuild_03.png" ></p>
+
+# Package all public JARs together.
+
+Command : java -jar GitCommitHashTest-1.0-SNAPSHOT-master-431ece7-jar-with-dependencies.jar
+
+<p align=center><img src="./images/MavenBuild_02.png" ></p>
