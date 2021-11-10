@@ -24,7 +24,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>libs/</classpathPrefix>
-                            <mainClass>com.oarang.MainPage</mainClass>
+                            <mainClass>com.example.MainPage</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

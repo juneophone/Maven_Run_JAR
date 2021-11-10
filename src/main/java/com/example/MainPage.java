@@ -1,4 +1,4 @@
-package com.oarang;
+package com.example;
 
 public class MainPage {
 
