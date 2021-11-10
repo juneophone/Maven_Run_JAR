@@ -131,11 +131,11 @@ Here are the executable JAR files.
 
 # Execute Result
 
-# The public JAR is separated into the libs folder.
+# The public JAR is separated. The libs are not together with the JAR.
 
 Command : java -jar GitCommitHashTest-1.0-SNAPSHOT-master-431ece7.jar
 
-<p align=center><img src="./images/MavenBuild_03.png" ></p>
+<p align=center><img src="./images/MavenBuild_04.png" ></p>
 
 # Package all public JARs together.
 
