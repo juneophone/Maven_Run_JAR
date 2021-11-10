@@ -1,20 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+# Use IntelliJ IDEA Maven build can executive jar file. 
 
-    <groupId>org.example</groupId>
-    <artifactId>GitCommitHashTest</artifactId>
-    <version>1.0-SNAPSHOT-${git.branch}-${git.commit.id.abbrev}</version>
-    <packaging>jar</packaging>
 
-    <name>GitCommitHashTest</name>
-    <description>Test Git commit Hash</description>
+# Maven Build
 
-    <build>
-        <plugins>
-            <!-- Maven Compile JAR Package Setting #Start -->
+<p align=center><img src="./images/MavenBuild_01.png" ></p>
+
+# Pom.xml Setting
+
+[pom.xml](pom.xml)
+
+# Maven Compile JAR Package Setting
+
+```java
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -29,9 +26,11 @@
                     </archive>
                 </configuration>
             </plugin>
+```
 
-            <!-- å°‡ä¾è³´çš„å…±ç”¨ jar å¦å¤–è¤‡è£½åˆ° libs ç›®éŒ„ -->
-            <!-- Copy the dependent jar package to the libs directory -->
+# Copy the dependent jar package to the libs directory
+
+```java
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -50,8 +49,12 @@
                     </execution>
                 </executions>
             </plugin>
+```
 
-            <!-- å°‡ä¾è³´åŒ…ä¸€èµ·æ‰“åŒ… -->
+# Package the dependent packages together.
+
+
+```java
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
@@ -75,39 +78,44 @@
                     </descriptorRefs>
                 </configuration>
             </plugin>
+```
 
-            <!-- Maven Compile JAR Package Setting #End-->
-            <plugin>
+
+# Use git-commit-id-plugin
+
+
+```java
+						<plugin>
                 <groupId>pl.project13.maven</groupId>
                 <artifactId>git-commit-id-plugin</artifactId>
                 <version>4.9.10</version>
                 <executions>
                     <execution>
                         <id>get-the-git-infos</id>
-                        <!-- é»˜èªç¶å®šéšŽæ®µinitialize -->
+                        <!-- Àq»{¸j©w¶¥¬qinitialize -->
                         <phase>initialize</phase>
                         <goals>
-                            <!-- ç›®æ¨™ï¼šrevision -->
+                            <!-- ¥Ø¼Ð¡Grevision -->
                             <goal>revision</goal>
                         </goals>
                     </execution>
                 </executions>
                 <configuration>
-                    <!-- æª¢æŸ¥çš„å€‰åº«æ ¹ç›®éŒ„ï¼Œ${project.basedir}ï¼šé …ç›®æ ¹ç›®éŒ„ï¼Œå³åŒ…å«pom.xmlæ–‡ä»¶çš„ç›®éŒ„ -->
+                    <!-- ÀË¬dªº­Ü®w®Ú¥Ø¿ý¡A${project.basedir}¡G¶µ¥Ø®Ú¥Ø¿ý¡A§Y¥]§tpom.xml¤å¥óªº¥Ø¿ý -->
                     <dotGitDirectory>${project.basedir}/.git</dotGitDirectory>
-                    <!-- falseï¼šæŽƒæè·¯å¾‘æ™‚ä¸æ‰“å°æ›´å¤šä¿¡æ¯ï¼Œé»˜èªå€¼falseï¼Œå¯ä»¥ä¸é…ç½® -->
+                    <!-- false¡G±½´y¸ô®|®É¤£¥´¦L§ó¦h«H®§¡AÀq»{­Èfalse¡A¥i¥H¤£°t¸m -->
                     <verbose>false</verbose>
-                    <!-- å®šç¾©æ’ä»¶ä¸­æ‰€æœ‰æ™‚é–“æ ¼å¼ï¼Œé»˜èªå€¼ï¼šyyyy-MM-ddâ€™Tâ€™HH:mm:ssZ -->
+                    <!-- ©w¸q´¡¥ó¤¤©Ò¦³®É¶¡®æ¦¡¡AÀq»{­È¡Gyyyy-MM-dd¡¦T¡¦HH:mm:ssZ -->
                     <dateFormat>yyyy-MM-dd HH:mm:ss</dateFormat>
-                    <!-- gitå±¬æ€§æ–‡ä»¶ä¸­å„å±¬æ€§å‰ç¶´ï¼Œé»˜èªå€¼gitï¼Œå¯ä»¥ä¸é…ç½® -->
+                    <!-- gitÄÝ©Ê¤å¥ó¤¤¦UÄÝ©Ê«eºó¡AÀq»{­Ègit¡A¥i¥H¤£°t¸m -->
                     <prefix>git</prefix>
-                    <!-- ç”Ÿæˆgitå±¬æ€§æ–‡ä»¶ï¼Œé»˜èªfalseï¼šä¸ç”Ÿæˆ -->
+                    <!-- ¥Í¦¨gitÄÝ©Ê¤å¥ó¡AÀq»{false¡G¤£¥Í¦¨ -->
                     <generateGitPropertiesFile>true</generateGitPropertiesFile>
-                    <!-- ç”Ÿæˆgitå±¬æ€§æ–‡ä»¶è·¯å¾‘åŠæ–‡ä»¶åï¼Œé»˜èª${project.build.outputDirectory}/git.properties -->
+                    <!-- ¥Í¦¨gitÄÝ©Ê¤å¥ó¸ô®|¤Î¤å¥ó¦W¡AÀq»{${project.build.outputDirectory}/git.properties -->
                     <generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties</generateGitPropertiesFilename>
-                    <!-- ç”Ÿæˆgitå±¬æ€§æ–‡ä»¶æ ¼å¼ï¼Œé»˜èªå€¼properties -->
+                    <!-- ¥Í¦¨gitÄÝ©Ê¤å¥ó®æ¦¡¡AÀq»{­Èproperties -->
                     <format>json</format>
-                    <!-- é…ç½®git-describeå‘½ä»¤ -->
+                    <!-- °t¸mgit-describe©R¥O -->
                     <gitDescribe>
                         <skip>false</skip>
                         <always>false</always>
@@ -115,25 +123,4 @@
                     </gitDescribe>
                 </configuration>
             </plugin>
-        </plugins>
-    </build>
-    <dependencies>
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20210307</version>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13.2</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-
-    <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-    </properties>
-
-</project>
+```
