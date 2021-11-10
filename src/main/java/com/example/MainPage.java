@@ -1,11 +1,14 @@
 package com.example;
 
+import javax.swing.*;
+import java.awt.*;
+
 public class MainPage {
 
     private static GitInfos gitInfos;
 
     public static void main(String[] args){
-        System.out.println("Hi JW");
+        System.out.println("\nHello, Maven Build");
 
         gitInfos = new GitInfos();
 
